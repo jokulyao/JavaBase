@@ -1,0 +1,16 @@
+1.static
+    static关键字用来修饰变量、方法；不能用来修饰类
+    1.1    static修饰的变量称为静态成员变量，为类的公有变量，在第一次使用时被初始化对于该类的所有对象来讲，static成员变量只有一份
+    1.2    static修饰的方法称为静态方法，在调用该方法时，不用创建对象，所以在static方法中只能访问静态成员变量。
+
+2.final
+    final关键字用来修饰变量、方法、类
+    2.1    final的变量的值不能够被改变
+                final的成员变量
+                final的局部变量（形参）
+    2.2    final的方法不能够被重写
+    2.3    final的类不能被继承
+
+3.private、default、protected、public
+    private、default、protected、public关键字置于类的成员定义前，用来限定其他对象对该类对象成员的访问限制。
+    default、public关键字可以修饰class。
