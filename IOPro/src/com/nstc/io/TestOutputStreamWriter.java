@@ -1,0 +1,22 @@
+package com.nstc.io;
+
+import java.io.*;
+
+public class TestOutputStreamWriter {
+	public static void main(String[] args) {
+		try {
+			OutputStreamWriter osw = new OutputStreamWriter(
+					new FileOutputStream("d:\\bak\\char.txt"));
+			osw.write("mircosoftibmsunapplehp");
+			System.out.println(osw.getEncoding());
+			osw.close();
+			osw = new OutputStreamWriter(new FileOutputStream(
+					"d:\\bak\\char.txt", true), "ISO8859_1"); // latin-1
+			osw.write("mircosoftibmsunapplehp");
+			System.out.println(osw.getEncoding());
+			osw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+}

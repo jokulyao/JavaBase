@@ -1,0 +1,155 @@
+java中的io系统总结
+
+一、
+java中的io中的（input/output）stream无非就是包括基于字符的stream、基于字节的stream和把字节导向的stream转换
+字符为导向的stream的stream。（很难理解么？）
+
+
+1.    以字节为导向的stream------InputStream/OutputStream
+
+InputStream 和 OutputStream是两个abstact类，对于字节为导向的stream都扩展这两个鸡肋（基类^_^）;
+
+	--InputStream
+		1)    ByteArrayInputStream -- 把内存中的一个缓冲区作为InputStream使用.
+		
+		construct---ByteArrayInputStream(byte[])创建一个新字节数组输入流，它从指定字节数组中读取数据。
+		---ByteArrayInputStream(byte[], int, int) 创建一个新字节数组输入流，它从指定字节数组中读取数据。
+		---mark::该字节数组未被复制。
+		
+		2)    StringBufferInputStream -- 把一个String对象作为InputStream .
+		
+		注释：不推荐使用 StringBufferInputStream 方法。 此类不能将字符正确的转换为字节。
+		同 JDK 1.1 版中的类似，从一个串创建一个流的最佳方法是采用 StringReader 类。 
+		
+		construct---StringBufferInputStream(String) 据指定串创建一个读取数据的输入流串。
+		
+		3)    FileInputStream -- 把一个文件作为InputStream，实现对文件的读取操作 
+		
+		construct---FileInputStream(File) 创建一个输入文件流，从指定的 File 对象读取数据。
+		---FileInputStream(FileDescriptor) 创建一个输入文件流，从指定的文件描述器读取数据。
+		---FileInputStream(String) 创建一个输入文件流，从指定名称的文件读取数据。
+		
+		method ---- read() 从当前输入流中读取一字节数据。 
+		read(byte[]) 将当前输入流中 b.length 个字节数据读到一个字节数组中。 
+		read(byte[], int, int) 将输入流中 len 个字节数据读入一个字节数组中。
+		
+		4)    PipedInputStream：实现了pipe的概念，主要在线程中使用. 管道输入流是指一个通讯管道的接收端。
+		
+		一个线程通过管道输出流发送数据，而另一个线程通过管道输入流读取数据，
+		这样可实现两个线程间的通讯。
+		
+		PipedInputStream() 创建一个管道输入流，它还未与一个管道输出流连接。 
+		PipedInputStream(PipedOutputStream) 创建一个管道输入流, 它已连接到一个管道输出流。 
+		
+		5)    SequenceInputStream：把多个InputStream合并为一个InputStream .“序列输入流”类允许应用程序把几个输入流连续地合并起来，
+		
+		并且使它们像单个输入流一样出现。每个输入流依次被读取，直到到达该流的末尾。
+		然后“序列输入流”类关闭这个流并自动地切换到下一个输入流。 
+		SequenceInputStream(Enumeration) 创建一个新的序列输入流，并用指定的输入流的枚举值初始化它。 
+		SequenceInputStream(InputStream, InputStream) 创建一个新的序列输入流，初始化为首先 读输入流 s1, 然后读输入流 s2。
+
+	--OutputSteam
+		1)    ByteArrayOutputStream：把信息存入内存中的一个缓冲区中.该类实现一个以字节数组形式写入数据的输出流。
+		
+		当数据写入缓冲区时，它自动扩大。用 toByteArray() 和 toString() 能检索数据。 
+		
+		construct --- ByteArrayOutputStream() 创建一个新的字节数组输出流。
+		--- ByteArrayOutputStream() 创建一个新的字节数组输出流。 
+		--- ByteArrayOutputStream(int) 创建一个新的字节数组输出流，并带有指定大小字节的缓冲区容量。 
+		toString(String) 根据指定字符编码将缓冲区内容转换为字符串，并将字节转换为字符。 
+		write(byte[], int, int) 将指定字节数组中从偏移量 off 开始的 len 个字节写入该字节数组输出流。 
+		write(int) 将指定字节写入该字节数组输出流。 
+		writeTo(OutputStream) 用 out.write(buf, 0, count) 调用输出流的写方法将该字节数组输出流的全部内容写入指定的输出流参数。 
+		
+		2)    FileOutputStream:文件输出流是向 File 或 FileDescriptor 输出数据的一个输出流。
+		
+		FileOutputStream(File) 创建一个文件输出流，向指定的 File 对象输出数据。 
+		FileOutputStream(FileDescriptor) 创建一个文件输出流，向指定的文件描述器输出数据。 
+		FileOutputStream(String) 创建一个文件输出流，向指定名称的文件输出数据。 
+		FileOutputStream(String, boolean) 用指定系统的文件名，创建一个输出文件。
+		
+		3)    PipedOutputStream:管道输出流是指一个通讯管道的发送端。 一个线程通过管道输出流发送数据，
+		
+		而另一个线程通过管道输入流读取数据，这样可实现两个线程间的通讯。
+		
+		PipedOutputStream() 创建一个管道输出流，它还未与一个管道输入流连接。 
+		PipedOutputStream(PipedInputStream) 创建一个管道输出流，它已连接到一个管道输入流。
+
+
+2.    以字符为导向的stream Reader/Writer
+
+以Unicode字符为导向的stream，表示以Unicode字符为单位从stream中读取或往stream 中写入信息。
+Reader/Writer 为abstact类
+以Unicode字符为导向的stream包括下面几种类型：
+
+	--Reader
+		1) CharArrayReader：与ByteArrayInputStream对应 
+			CharArrayReader(char[]) 用指定字符数组创建一个 CharArrayReader。
+			CharArrayReader(char[], int, int) 用指定字符数组创建一个 CharArrayReader。
+		2) StringReader：与StringBufferInputStream对应 
+			StringReader(String) 创建一新的串读取者。
+		3) FileReader：与FileInputStream对应
+		4) PipedReader：与PipedInputStream对应
+	
+	--Writer
+		1) CharArrayWrite：与ByteArrayOutputStream对应 
+		2) StringWrite：无与之对应的以字节为导向的stream 
+		3) FileWrite：与FileOutputStream对应 
+		4) PipedWrite：与PipedOutputStream对应
+
+3.    两种不现导向的stream之间的转换
+
+	InputStreamReader和OutputStreamReader：把一个以字节为导向的stream转换成一个以字符为导向的stream。
+	一个 InputStreamReader 类是从字节流到字符流的桥梁：它读入字节，并根据指定的编码方式，将之转换为字符流。
+	使用的编码方式可能由名称指定，或平台可接受的缺省编码方式。
+	
+	InputStreamReader 的 read() 方法之一的每次调用，可能促使从基本字节输入流中读取一个或多个字节。
+	为了达到更高效率，考虑用 BufferedReader 封装 InputStreamReader，
+	BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
+	
+	InputStreamReader(InputStream) 用缺省的字符编码方式，创建一个 InputStreamReader。 
+	InputStreamReader(InputStream, String) 用已命名的字符编码方式，创建一个 InputStreamReader。
+	
+	OutputStreamWriter 将多个字符写入到一个输出流，根据指定的字符编码将多个字符转换为字节。 
+	每个 OutputStreamWriter 合并它自己的 CharToByteConverter, 因而是从字符流到字节流的桥梁。
+	
+	FilterInputStream、RandomAccessFile 见例子。
+	ObjectInputStream 、 ObjectOutputStream见另外blog。
+
+4.    Java IO的一般使用原则：
+
+一、按数据来源（去向）分类：
+1、是文件： FileInputStream, FileOutputStream, FileReader, FileWriter
+2、是byte[]：ByteArrayInputStream, ByteArrayOutputStream
+3、是Char[]: CharArrayReader, CharArrayWriter
+4、是String: StringBufferInputStream, StringReader, StringWriter
+5、网络数据流：InputStream, OutputStream, Reader, Writer
+
+二、按是否格式化输出分：
+1、要格式化输出：PrintStream, PrintWriter
+
+三、按是否要缓冲分：
+1、要缓冲：BufferedInputStream, BufferedOutputStream, BufferedReader, BufferedWriter
+
+四、按数据格式分：
+1、二进制格式（只要不能确定是纯文本的）: InputStream, OutputStream及其所有带Stream结束的子类
+2、纯文本格式（含纯英文与汉字或其他编码方式）；Reader, Writer及其所有带Reader, Writer的子类
+
+五、按输入输出分：
+1、输入：Reader, InputStream类型的子类
+2、输出：Writer, OutputStream类型的子类
+
+六、特殊需要：
+1、从Stream到Reader,Writer的转换类：InputStreamReader, OutputStreamWriter
+2、对象输入输出：ObjectInputStream, ObjectOutputStream
+3、进程间通信：PipeInputStream, PipeOutputStream, PipeReader, PipeWriter
+4、合并输入：SequenceInputStream
+5、更特殊的需要：PushbackInputStream, PushbackReader, LineNumberInputStream, LineNumberReader
+
+决定使用哪个类以及它的构造进程的一般准则如下（不考虑特殊需要）：
+首先，考虑最原始的数据格式是什么： 原则四
+第二，是输入还是输出：原则五
+第三，是否需要转换流：原则六第1点
+第四，数据来源（去向）是什么：原则一
+第五，是否要缓冲：原则三 （特别注明：一定要注意的是readLine()是否有定义，有什么比read, write更特殊的输入或输出方法）
+第六，是否要格式化输出：原则二
