@@ -1,6 +1,11 @@
-package com.nstc.proxy;
+package com.nstc.javaProxy;
 
 import org.junit.Test;
+
+import com.nstc.javaProxy.MyInvocationHandler;
+import com.nstc.javaProxy.ProxyGeneratorUtils;
+import com.nstc.javaProxy.UserService;
+import com.nstc.javaProxy.UserServiceImpl;
 
 /** 
  * 动态代理测试类 

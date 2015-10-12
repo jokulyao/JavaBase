@@ -1,10 +1,11 @@
-package com.nstc.proxy;
+package com.nstc.javaProxy;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 import sun.misc.ProxyGenerator;
-import com.nstc.proxy.UserServiceImpl;
+
+import com.nstc.javaProxy.UserServiceImpl;
 
 /** 
  * 代理类的生成工具 

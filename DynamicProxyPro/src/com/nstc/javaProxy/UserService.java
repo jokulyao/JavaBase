@@ -1,4 +1,4 @@
-package com.nstc.proxy;
+package com.nstc.javaProxy;
 /** 
  * 目标对象实现的接口，用JDK来生成代理对象一定要实现一个接口 
  * @since 2012-8-9 

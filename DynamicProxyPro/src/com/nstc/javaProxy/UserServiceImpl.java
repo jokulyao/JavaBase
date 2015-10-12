@@ -1,4 +1,4 @@
-package com.nstc.proxy;
+package com.nstc.javaProxy;
 /** 
  * 目标对象
  * @since 2012-8-9 
