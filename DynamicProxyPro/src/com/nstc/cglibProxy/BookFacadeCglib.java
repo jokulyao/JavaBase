@@ -32,9 +32,9 @@ public class BookFacadeCglib implements MethodInterceptor {
 	// 回调方法
 	public Object intercept(Object obj, Method method, Object[] args,
 			MethodProxy proxy) throws Throwable {
-		System.out.println("事物开始");
+		System.out.println("事务开始");
 		proxy.invokeSuper(obj, args);
-		System.out.println("事物结束");
+		System.out.println("事务结束");
 		return null;
 
 	}
