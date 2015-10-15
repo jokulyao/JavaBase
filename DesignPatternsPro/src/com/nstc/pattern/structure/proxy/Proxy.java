@@ -10,7 +10,7 @@ public class Proxy implements Sourceable {
 	private Source source;
 
 	public Proxy() {
-		super();
+//		super();
 		// 个人感觉：代理模式(Proxy)与装饰模式(Decorator)的区别就在这
 		// 装饰模式(Decorator)由外部传入对象
 		// 代理模式(Proxy)自己new对象
