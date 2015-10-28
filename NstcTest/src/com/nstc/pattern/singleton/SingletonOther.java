@@ -1,7 +1,11 @@
 package com.nstc.pattern.singleton;
 
-public class SingletonOther {
+import java.io.Serializable;
 
+public class SingletonOther implements Serializable{
+
+	private static final long serialVersionUID = -9112527335014828987L;
+	
 	private static SingletonOther instance = null;
 	
 	private SingletonOther(){
@@ -20,4 +24,5 @@ public class SingletonOther {
 			instance = new SingletonOther();
 		}
 	}
+	
 }
