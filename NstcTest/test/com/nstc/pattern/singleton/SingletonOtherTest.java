@@ -29,6 +29,7 @@ public class SingletonOtherTest {
         ObjectInputStream ois = new ObjectInputStream(new FileInputStream(
                 new File("E:/Person.txt")));
         SingletonOther person = (SingletonOther) ois.readObject();
+        ois.close();
         
         System.out.println(sin1 == person);
 	}
