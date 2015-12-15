@@ -15,31 +15,27 @@ public class ExecutorTest {
 		System.out.println("----程序开始运行----");
 		Date date1 = new Date();
 
-		int taskSize = 1;
+		int taskSize = 5;
 		// 创建一个线程池
-//		ExecutorService pool = Executors.newFixedThreadPool(taskSize);
-		ExecutorService pool2 = Executors.newSingleThreadExecutor();
+		ExecutorService pool = Executors.newFixedThreadPool(taskSize);
+//		ExecutorService pool2 = Executors.newSingleThreadExecutor();
 		// 创建多个有返回值的任务
 		List<Future> list = new ArrayList<Future>();
 		for (int i = 0; i < taskSize; i++) {
 			Callable c = new MyCallable(i + " ");
 			// 执行任务并获取Future对象
-			System.out.println("CCCCCCCCCCCCCCCCCCCC");
-			Future f = pool2.submit(c);
-			Thread.currentThread().sleep(1000);
-			System.out.println("DDDDDDDDDDDDDD");
+			Future f = pool.submit(c);
+//			Thread.currentThread().sleep(1000);
 			// System.out.println(">>>" + f.get().toString());
 			list.add(f);
 		}
 		// 关闭线程池
-		pool2.shutdown();
+		pool.shutdown();
 
 		// 获取所有并发任务的运行结果
 		for (Future f : list) {
 			// 从Future对象上获取任务的返回值，并输出到控制台
-			System.out.println("AAAAAAAAAAAAAA");
 			System.out.println(">>>" + f.get());
-			System.out.println("BBBBBBBBBBBB");
 		}
 
 		Date date2 = new Date();
@@ -57,12 +53,12 @@ class MyCallable implements Callable<Object> {
 
 	@Override
 	public Object call() throws Exception {
-		System.out.println(">>>" + taskNum + "任务启动");
+		System.out.println(">>>我是线程" + taskNum + "任务启动");
 		Date dateTmp1 = new Date();
 		Thread.sleep(5000);
 		Date dateTmp2 = new Date();
 		long time = dateTmp2.getTime() - dateTmp1.getTime();
-		System.out.println(">>>" + taskNum + "任务终止");
-		return taskNum + "任务返回运行结果,当前任务时间【" + time + "毫秒】";
+		System.out.println(">>>我是线程" + taskNum + "任务终止");
+		return "线程" + taskNum + "任务返回运行结果,当前任务时间【" + time + "毫秒】";
 	}
 }
