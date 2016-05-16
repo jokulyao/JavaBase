@@ -1,0 +1,2 @@
+Target类引用了Source类中的静态final常量，如果编译的时候只替换Source类，那么将不起作用
+需要Source类和Target类一起替换
