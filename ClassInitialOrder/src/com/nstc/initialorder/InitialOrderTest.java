@@ -1,33 +1,33 @@
-package com.nstc.initialorder;
+ï»¿package com.nstc.initialorder;
 
 /**
- * ¶ÔÓÚÀàµÄ¾²Ì¬±äÁ¿¡¢¾²Ì¬³õÊ¼»¯¿é¡¢ÀàµÄ³ÉÔ±±äÁ¿¡¢³õÊ¼»¯¿é¡¢¹¹ÔìÆ÷À´½²:
- * ËüÃÇµÄ³õÊ¼»¯Ë³ĞòÒÀ´ÎÊÇ£¨¾²Ì¬±äÁ¿¡¢¾²Ì¬³õÊ¼»¯¿é£©>£¨±äÁ¿¡¢³õÊ¼»¯¿é£©> ¹¹ÔìÆ÷
- * ¿ÉÒÔÍ¨¹ıÏÂÃæµÄ²âÊÔ´úÂëÀ´ÑéÖ¤ÕâÒ»µã
+ * å¯¹äºç±»çš„é™æ€å˜é‡ã€é™æ€åˆå§‹åŒ–å—ã€ç±»çš„æˆå‘˜å˜é‡ã€åˆå§‹åŒ–å—ã€æ„é€ å™¨æ¥è®²:
+ * å®ƒä»¬çš„åˆå§‹åŒ–é¡ºåºä¾æ¬¡æ˜¯ï¼ˆé™æ€å˜é‡ã€é™æ€åˆå§‹åŒ–å—ï¼‰>ï¼ˆå˜é‡ã€åˆå§‹åŒ–å—ï¼‰> æ„é€ å™¨
+ * å¯ä»¥é€šè¿‡ä¸‹é¢çš„æµ‹è¯•ä»£ç æ¥éªŒè¯è¿™ä¸€ç‚¹
  */
 
 public class InitialOrderTest {
 
-	// ÀàµÄ¾²Ì¬±äÁ¿
-	public static String staticField = "ÀàµÄ¾²Ì¬±äÁ¿";
-	// ÀàµÄ³ÉÔ±±äÁ¿
-	public String field = "ÀàµÄ³ÉÔ±±äÁ¿";
+	// ç±»çš„é™æ€å˜é‡
+	public static String staticField = "ç±»çš„é™æ€å˜é‡";
+	// ç±»çš„æˆå‘˜å˜é‡
+	public String field = "ç±»çš„æˆå‘˜å˜é‡";
 
-	// ¾²Ì¬³õÊ¼»¯¿é
+	// é™æ€åˆå§‹åŒ–å—
 	static {
 		System.out.println(staticField);
-		System.out.println("¾²Ì¬³õÊ¼»¯¿é");
+		System.out.println("é™æ€åˆå§‹åŒ–å—");
 	}
 
-	// ³õÊ¼»¯¿é
+	// åˆå§‹åŒ–å—
 	{
 		System.out.println(field);
-		System.out.println("³õÊ¼»¯¿é");
+		System.out.println("åˆå§‹åŒ–å—");
 	}
 
-	// ¹¹ÔìÆ÷
+	// æ„é€ å™¨
 	public InitialOrderTest() {
-		System.out.println("¹¹ÔìÆ÷");
+		System.out.println("æ„é€ å™¨");
 	}
 
 	public static void main(String[] args) {

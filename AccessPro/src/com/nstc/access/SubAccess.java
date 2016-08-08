@@ -1,4 +1,4 @@
-package com.nstc.access;
+锘縫ackage com.nstc.access;
 
 import com.nstc.access.Access;
 
@@ -6,9 +6,9 @@ public class SubAccess extends Access {
 
 	public void testSubAccess() {
 		// System.out.println(privateStr);
-		//不同包下的子类SubAccess不能访问Access类的private成员变量
+		//涓嶅悓鍖呬笅鐨勫瓙绫籗ubAccess涓嶈兘璁块棶Access绫荤殑private鎴愬憳鍙橀噺
 		// System.out.println(defaultStr);
-		//不同包下的子类SubAccess不能访问Access类的default成员变量
+		//涓嶅悓鍖呬笅鐨勫瓙绫籗ubAccess涓嶈兘璁块棶Access绫荤殑default鎴愬憳鍙橀噺
 		System.out.println(protectedStr);
 		System.out.println(publicStr);
 	}
