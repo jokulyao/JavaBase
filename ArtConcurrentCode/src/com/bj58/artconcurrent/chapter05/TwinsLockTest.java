@@ -15,6 +15,11 @@ public class TwinsLockTest {
     public void test() {
         final Lock lock = new TwinsLock();
         class Worker extends Thread {
+        	
+        	public Worker(String name){
+        		super(name);
+        	}
+        	
             public void run() {
                 while (true) {
                     lock.lock();
@@ -30,14 +35,15 @@ public class TwinsLockTest {
         }
         // 启动10个线程
         for (int i = 0; i < 10; i++) {
-            Worker w = new Worker();
+            Worker w = new Worker("Thread" + i);
             w.setDaemon(true);
             w.start();
         }
         // 每隔1秒换行
-        for (int i = 0; i < 10; i++) {
-            SleepUtils.second(1);
-            System.out.println();
-        }
+//        for (int i = 0; i < 10; i++) {
+//            SleepUtils.second(1);
+//            System.out.println();
+//        }
+        SleepUtils.second(300);
     }
 }
